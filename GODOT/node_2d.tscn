@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bu8y378hxqo11" path="res://text_edit.gd" id="2_0e48y"]
 [ext_resource type="Script" uid="uid://7354r5b7qo68" path="res://v_box_container.gd" id="2_0hol4"]
-[ext_resource type="Texture2D" uid="uid://4yi7jf00mywe" path="res://icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://du27lpeg7nrvf" path="res://name.gd" id="2_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://csmx2u8g6c2bg" path="res://Krest.png" id="3_0hol4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e48y"]
+bg_color = Color(0.39215687, 0.70980394, 0.9647059, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0e48y"]
 
@@ -50,27 +52,27 @@ grow_horizontal = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/Panel/Up" unique_id=748344796]
-custom_minimum_size = Vector2(0, 28)
+[node name="Name" type="TextEdit" parent="Control/VBoxContainer/Panel/Up" unique_id=957231889]
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 2.0
-text = "Заметки"
+size_flags_vertical = 0
+size_flags_stretch_ratio = 3.9
+theme_override_colors/background_color = Color(0.39215687, 0.70980394, 0.9647059, 1)
+theme_override_constants/line_spacing = 5
+placeholder_text = "Заметки"
+script = ExtResource("2_q6r6c")
 
-[node name="hidebut" type="TextureButton" parent="Control/VBoxContainer/Panel/Up" unique_id=1144318331]
-custom_minimum_size = Vector2(50, 0)
+[node name="Label" type="Label" parent="Control/VBoxContainer/Panel/Up" unique_id=809411373]
 layout_mode = 2
-size_flags_stretch_ratio = 0.0
-texture_normal = ExtResource("2_epypp")
-ignore_texture_size = true
-stretch_mode = 0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 13.25
 
 [node name="closebut" type="TextureButton" parent="Control/VBoxContainer/Panel/Up" unique_id=499331614]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
-texture_normal = ExtResource("2_epypp")
+texture_normal = ExtResource("3_0hol4")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -82,11 +84,13 @@ size_flags_stretch_ratio = 1.28
 [node name="TextEdit" type="TextEdit" parent="Control/VBoxContainer/Bottom" unique_id=1847526265]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/background_color = Color(0.7176471, 0.7176471, 0.7176471, 1)
+wrap_mode = 1
 script = ExtResource("2_0e48y")
 
 [connection signal="gui_input" from="Control" to="Control/VBoxContainer" method="_on_control_gui_input"]
 [connection signal="gui_input" from="Control/VBoxContainer" to="Control/VBoxContainer" method="_on_gui_input"]
 [connection signal="gui_input" from="Control/VBoxContainer/Panel" to="Control/VBoxContainer" method="_on_panel_gui_input"]
-[connection signal="pressed" from="Control/VBoxContainer/Panel/Up/hidebut" to="Control/VBoxContainer" method="_on_hidebut_pressed"]
+[connection signal="text_changed" from="Control/VBoxContainer/Panel/Up/Name" to="Control/VBoxContainer/Panel/Up/Name" method="_on_text_changed"]
 [connection signal="pressed" from="Control/VBoxContainer/Panel/Up/closebut" to="Control/VBoxContainer" method="_on_closebut_pressed"]
 [connection signal="text_changed" from="Control/VBoxContainer/Bottom/TextEdit" to="Control/VBoxContainer/Bottom/TextEdit" method="_on_text_changed"]
